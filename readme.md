@@ -9,13 +9,17 @@ Temporarily assign the dotfiles alias
 ```bash
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
-# Clone the bare repository
+Clone the bare repository
 ```bash
 git clone --bare <git-repo-url> $HOME/.dotfiles
 ```
 And then checkout the files, any errors might be duplicates of files in therepo, they will need to be removed, and then rerun.
 ```bash
 dotfiles checkout
+```
+And pull any submouldes you have
+```bash
+dotfiles submodule update --init --recursive
 ```
 
 ## Applications
