@@ -1,0 +1,7 @@
+[user]
+	email = github@sawaizsyed.com
+	name = sawaiz
+[push]
+	default = current
+[credential]
+	helper = wincred
