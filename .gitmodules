@@ -1,6 +1,6 @@
 [submodule ".zprezto"]
 	path = .zprezto
 	url = https://github.com/sorin-ionescu/prezto
-[submodule "/cygdrive/c/Users/sawaiz/.nano"]
-	path = /cygdrive/c/Users/sawaiz/.nano
+[submodule ".nano"]
+	path = .nano
 	url = http://github.com/scopatz/nanorc.git
