@@ -23,7 +23,7 @@ fi
 
 if [ -z $SSH_AUTH_SOCK ]; then
     ssh-agent -s | sed 's/^echo/#echo/'> ~/.ssh/env
-    chmod 600 ~/.ssh/env
+    chmod 600 ~/.ssh/env 1> /dev/null
     source ~/.ssh/env > /dev/null 2>&1
 fi
 
