@@ -5,4 +5,4 @@
 	default = current
 [credential]
 	helper = wincred
-	helper = credential-store
+	helper = credential-cache
