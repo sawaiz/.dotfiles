@@ -10,28 +10,21 @@ fi
 # Use this history file
 HISTFILE=~/.zhistory
 
-# Load the ssh-agent, or use existing one.
-SSH_ENV="$HOME/.ssh/environment"
+# Setup ssh-agent, use existing one is it exists
+if [ -z $SSH_AUTH_SOCK ]; then
+    if [ -r ~/.ssh/env ]; then
+            source ~/.ssh/env
+            if [ `ps -p $SSH_AGENT_PID | wc -l` = 1 ]; then
+                    rm ~/.ssh/env
+                    unset SSH_AUTH_SOCK
+            fi
+    fi
+fi
 
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
-}
-
-# Source SSH settings, if applicable
-
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
+if [ -z $SSH_AUTH_SOCK ]; then
+    ssh-agent -s | sed 's/^echo/#echo/'> ~/.ssh/env
+    chmod 600 ~/.ssh/env
+    source ~/.ssh/env > /dev/null 2>&1
 fi
 
 # Set the prompts
