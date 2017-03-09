@@ -34,6 +34,13 @@ else
     start_agent;
 fi
 
+# Set the prompts
+# %B%(?..[%?] )%b - Bold error return value
+# %D{%H:%M}       - Time, 24h with leading zeros
+# %B%(!.#.>)%b    - Bold, has if privlaged, > otherwise
+PROMPT='%B%(?..[%?] )%b%F{96}%D{%H:%M}%f%F{136}%B%(!.#.>)%b%f '
+RPROMPT='%F{103}%~%f'
+
 # Source Root
 if [ -f /usr/local/root/bin/thisroot.sh ]; then
     source /usr/local/root/bin/thisroot.sh
