@@ -10,6 +10,9 @@ fi
 # Use this history file
 HISTFILE=~/.zhistory
 
+# Set teh dircolors
+eval `dircolors ~/.dircolors`
+
 # Setup ssh-agent, use existing one is it exists
 if [ -z $SSH_AUTH_SOCK ]; then
     if [ -r ~/.ssh/env ]; then
