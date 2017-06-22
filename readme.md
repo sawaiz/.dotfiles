@@ -28,7 +28,10 @@ Changing the home directory to the windows profile directory
 mkpasswd -l -d -p "$(cygpath -H)" > /etc/passwd
 mkgroup -l -d > /etc/group
 ```
-
+Change shell (chsh) command doesnt exist, bit this sed script will work to change your defulat shell to zsh
+```bash
+sed -i "s/$USER\:\/bin\/bash/$USER\:\/bin\/zsh/g" /etc/passwd
+```
 ### Windows Subsystem for Linux (WSL) tips
 Install mintty/wsltty so mintty settings work.
 
