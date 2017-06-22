@@ -2,7 +2,7 @@
 Dotfiles are files, houesed in the users home directory, that are used by programsto configure themselves.
 
 ## Setup
-This uses a bare git repository. THis allows no symlinks and easier configuration and updates. But it comes at a cost, therefore special precaustions must be taken to initailise and 
+This uses a bare git repository. This allows no symlinks and easier configuration and updates. But it comes at a cost, therefore special precaustions must be taken to initailise and 
 manage it.
 
 Temporarily assign the dotfiles alias
@@ -21,6 +21,16 @@ And pull any submouldes you have
 ```bash
 dotfiles submodule update --init --recursive
 ```
+
+### Cygwin Tips
+Changing the home directory to the windows profile directory
+```bash
+mkpasswd -l -d -p "$(cygpath -H)" > /etc/passwd
+mkgroup -l -d > /etc/group
+```
+
+### Windows Subsystem for Linux (WSL) tips
+Install mintty/wsltty so mintty settings work.
 
 ## Applications
 
