@@ -34,6 +34,7 @@ sed -i "s/$USER\:\/bin\/bash/$USER\:\/bin\/zsh/g" /etc/passwd
 ```
 ### Windows Subsystem for Linux (WSL) tips
 Install mintty/wsltty so mintty settings work.
+In the shortcuts, change the config directory command, to point tho the correct config file `-c "%USERPROFILE%\.minttyrc"`
 
 ## Applications
 
