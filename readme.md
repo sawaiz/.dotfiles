@@ -33,6 +33,13 @@ Change shell (chsh) command doesnt exist, bit this sed script will work to chang
 sed -i "s/$USER\:\/bin\/bash/$USER\:\/bin\/zsh/g" /etc/passwd
 ```
 ### Windows Subsystem for Linux (WSL) tips
+
+Change home direcotry to windows home
+```bash
+sudo nano /etc/passwd
+```
+And change the home path to youruser directory, for example /mnt/c/Users/sawaiz
+
 Install mintty/wsltty so mintty settings work.
 In the shortcuts, change the config directory command, to point tho the correct config file `-c "%USERPROFILE%\.minttyrc"`
 
