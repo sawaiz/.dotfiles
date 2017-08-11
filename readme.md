@@ -32,21 +32,58 @@ Change shell (chsh) command doesnt exist, bit this sed script will work to chang
 ```bash
 sed -i "s/$USER\:\/bin\/bash/$USER\:\/bin\/zsh/g" /etc/passwd
 ```
-### Windows Subsystem for Linux (WSL) tips
+### Windows Subsystem for Linux (WSL)
+If you are running in a windows enviroment, WSL is an option for your linux shell.
 
+#### Installation
+Install windows subsytem for linux (WSL). and [wsltty](https://github.com/mintty/wsltty). Then in a bash session, run
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y build-essential checkinstall git zsh
+```
 Change home direcotry to windows home
 ```bash
 sudo nano /etc/passwd
 ```
 And change the home path to youruser directory, for example /mnt/c/Users/sawaiz
-
-Install mintty/wsltty so mintty settings work.
-In the shortcuts, change the config directory command, to point tho the correct config file `-c "%USERPROFILE%\.minttyrc"`
+```bash
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+git clone --bare https://github.com/Sawaiz/.dotfiles.git $HOME/.dotfiles
+dotfiles checkout
+dotfiles submodule update --init --recursive
+dotfiles remote set-url origin git@github.com:Sawaiz/.dotfiles.git
+```
+Change presmission on ssh folder... after adding your own `id_rsa` file.
+```bash
+nano ~/.ssh/id_rsa
+chmod 600 ~/.ssh/*
+```
+In the shortcuts, change the config directory command, to point tho the correct config file `-c "%USERPROFILE%\.minttyrc"`.
 
 ## Applications
+Command for installing all the applicaitons below.
+`sudo apt-get install -y git zsh nano tmux`
+
+### Source Control
+I dont think this requres an explation, seeing as we this is.
 
 ### Text Editor
 Nano, nice, quick, and simple. This has a submodule with pretty good syntax highlighting, and a lot of languages.
 
 ### Shell
 ZSH, 
+
+### tmux
+Terminal multiplexer, I use chrome shortcuts as well as alt arrowkeys, those are included in the .tmux.config file. It requires a version 2.1+, here are instruction for compiling 2.5 form source.
+```bash
+sudo apt-get install -y libevent-dev ncurses-dev autoconf
+wget https://github.com/tmux/tmux/releases/download/2.5/tmux-2.5.tar.gz
+tar -xf tmux-2.5.tar.gz
+cd tmux-2.5
+./configure
+make -j8
+make install
+```
+
+### Cern ROOT
