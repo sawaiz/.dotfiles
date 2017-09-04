@@ -42,11 +42,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install -y build-essential checkinstall git zsh
 ```
-Change home direcotry to windows home
-```bash
-sudo nano /etc/passwd
-```
-And change the home path to youruser directory, for example /mnt/c/Users/sawaiz
+Now we have the prerequsites, begin importing this as a bare repository
 ```bash
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 git clone --bare https://github.com/Sawaiz/.dotfiles.git $HOME/.dotfiles
@@ -59,7 +55,7 @@ Change presmission on ssh folder... after adding your own `id_rsa` file.
 nano ~/.ssh/id_rsa
 chmod 600 ~/.ssh/*
 ```
-In the shortcuts, change the config directory command, to point tho the correct config file `-c "%USERPROFILE%\.minttyrc"`.
+In the shortcuts, change the config directory command, to point tho the correct config file `-c "%LOCALAPPDATA%\lxss\home\%USERNAME%\.minttyrc"` and change the default shell from `-t /bin/bash` to `-t /bin/zsh`.
 
 ## Applications
 Command for installing all the applicaitons below.
