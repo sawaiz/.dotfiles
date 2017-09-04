@@ -83,3 +83,35 @@ make install
 ```
 
 ### Cern ROOT
+Software for nuclear physics data processing. Its built to work with large data sets, and to be fast. Installation is somewhat complex due to some dependencies and no actual instalation, just havinga compiled toolset.
+#### Perp work
+```bash
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get install -y build-essential checkinstall
+sudo apt-get install -y dpkg-dev g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev
+sudo apt-get install -y xorg
+sudo apt-get install -y git
+```
+#### Install CMAKE
+```bash
+wget http://www.cmake.org/files/v3.9/cmake-3.9.0.tar.gz
+tar xf cmake-3.9.0.tar.gz
+cd cmake-3.9.0
+./configure
+make -j8
+make install
+cd ..
+rm -r cmake-3.9.0.tar.gz cmake-3.9.0
+```
+#### Create install location
+```bash
+mkdir /usr/local/root
+cd /usr/local/root
+```
+#### Clone source
+```bash
+git clone http://root.cern.ch/git/root.git
+cmake ./root
+cmake --build . -- -j8
+```
