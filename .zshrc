@@ -2,6 +2,18 @@
 # Executes commands at the start of an interactive session.
 #
 
+# Set title as the location
+#case $TERM in
+#    xterm*)
+#        precmd () {print -Pn "\e]0;${PWD/#${HOME}/~}\a"}
+#        ;;
+#esac
+
+# Start a tmux session if installed and not running
+if command -v tmux>/dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
+
 # Source zim
 if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
@@ -10,7 +22,7 @@ fi
 # Use this history file
 HISTFILE=~/.zhistory
 
-# Set teh dircolors
+# Set the dircolors
 eval `dircolors ~/.dircolors`
 
 # Setup ssh-agent, use existing one is it exists
