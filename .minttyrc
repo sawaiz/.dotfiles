@@ -1,4 +1,4 @@
-Transparency=medium
+Transparency=off
 Font=Consolas
 Term=xterm-256color
 BoldAsFont=yes
