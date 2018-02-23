@@ -55,7 +55,9 @@ Change presmission on ssh folder... after adding your own `id_rsa` file.
 nano ~/.ssh/id_rsa
 chmod 600 ~/.ssh/*
 ```
-In the shortcuts, change the config directory command, to point tho the correct config file `-c "%LOCALAPPDATA%\lxss\home\%USERNAME%\.minttyrc"` and change the default shell from `-t /bin/bash` to `-t /bin/zsh`.
+In the shortcuts, change the config directory command, to point to the correct config file `-c "%LOCALAPPDATA%\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\sawaiz\.minttyrc"` and change the default shell from `/bin/bash` to `/bin/zsh`.
+
+Install Xming as the X-Windows server and copy its shortcut to the `shell:startup` folder.
 
 ## Applications
 Command for installing all the applicaitons below.
