@@ -52,6 +52,5 @@
 
   # zsh-histery-substring-search
   zcompare ${zim_mods}/history-substring-search/external/zsh-history-substring-search.zsh
-  
 
 ) &!#

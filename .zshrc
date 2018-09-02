@@ -66,3 +66,7 @@ export DISPLAY=:0
 
 # Alias: 'git' command for working with the dotifles bare repo
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# Autocomplete
+source ~/.zim/modules/autosuggestions/init.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=10
