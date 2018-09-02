@@ -19,8 +19,8 @@ dotfiles submodule update --init --recursive
 dotfiles remote set-url origin git@github.com:Sawaiz/.dotfiles.git
 
 # Request user to paste RSA Key
-echo "Paste id_rsa" > $HOME/.ssh/id_rsa
-$EDITOR ~/.ssh/id_rsa
+echo "Replace with id_rsa" > $HOME/.ssh/id_rsa
+"${EDITOR:-nano}" ~/.ssh/id_rsa
 sudo -u $SUDO_USER chmod 600 ~/.ssh/*
 
 # Install tmux
