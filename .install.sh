@@ -1,4 +1,4 @@
-# Single Install script, built for WSL. 
+# Single Install script, built for WSL.
 
 #Check if running as root
 if [ "$EUID" -ne 0 ]
@@ -44,6 +44,7 @@ sudo apt-get install -y build-essential checkinstall
 sudo apt-get install -y dpkg-dev g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev
 sudo apt-get install -y xorg
 sudo apt-get install -y git
+sudo apt-get install -y python-dev
 
 ## Install CMAKE
 cd /tmp
