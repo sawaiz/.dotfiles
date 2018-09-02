@@ -12,7 +12,7 @@ apt-get update && apt-get -y upgrade
 # Pull configuration from git
 sudo apt-get install -y build-essential checkinstall git zsh
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-git clone --bare https://github.com/Sawaiz/.dotfiles.git $HOME/.dotfiles
+sudo -u $SUDO_USER git clone --bare https://github.com/Sawaiz/.dotfiles.git $HOME/.dotfiles
 cd $HOME
 dotfiles checkout
 dotfiles submodule update --init --recursive
@@ -21,7 +21,7 @@ dotfiles remote set-url origin git@github.com:Sawaiz/.dotfiles.git
 # Request user to paste RSA Key
 echo "Paste id_rsa" > $HOME/.ssh/id_rsa
 $EDITOR ~/.ssh/id_rsa
-chmod 600 ~/.ssh/*
+sudo -u $SUDO_USER chmod 600 ~/.ssh/*
 
 # Install tmux
 sudo apt-get install -y libevent-dev ncurses-dev autoconf
