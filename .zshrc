@@ -70,3 +70,10 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # Autocomplete
 source ~/.zim/modules/autosuggestions/init.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=10
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=TRUE
+ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
+bindkey '^\n' autosuggest-execute
+
+#Term
+export TERM=screen-256color
