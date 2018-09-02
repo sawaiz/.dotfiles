@@ -9,6 +9,9 @@
 #        ;;
 #esac
 
+#Change Term
+export TERM=tmux-256color
+
 # Start a tmux session if installed and not running
 if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
@@ -74,6 +77,3 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=TRUE
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 bindkey '^\n' autosuggest-execute
-
-#Term
-export TERM=screen-256color
