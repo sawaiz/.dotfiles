@@ -21,7 +21,6 @@ sudo -u $SUDO_USER /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME rem
 # Request user to paste RSA Key
 sudo -u $SUDO_USER mkdir -p $HOME/.ssh
 sudo -u $SUDO_USER echo "Replace with id_rsa" > $HOME/.ssh/id_rsa
-sudo -u $SUDO_USER "${EDITOR:-nano}" $HOME/.ssh/id_rsa
 sudo -u $SUDO_USER chmod 600 $HOME/.ssh/*
 
 # Install tmux
@@ -34,3 +33,5 @@ cd tmux-2.6
 make -j
 make install
 
+# Finished and instrucitons
+echo "Installation finsihed, add your RSA key in ~/.ssh/id_rsa"
