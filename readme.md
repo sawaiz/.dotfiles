@@ -1,6 +1,10 @@
 # Dotfiles
 Dotfiles are files, houesed in the users home directory, that are used by programsto configure themselves.
 
+```bash
+curl https://raw.githubusercontent.com/Sawaiz/.dotfiles/master/.install.sh | sudo bash
+```
+
 ## Setup
 This uses a bare git repository. This allows no symlinks and easier configuration and updates. But it comes at a cost, therefore special precaustions must be taken to initailise and 
 manage it.
