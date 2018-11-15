@@ -2,7 +2,7 @@
 Dotfiles are files, houesed in the users home directory, that are used by programsto configure themselves.
 
 ```bash
-curl https://raw.githubusercontent.com/Sawaiz/.dotfiles/master/.install.sh | sudo bash
+wget -qO- https://raw.githubusercontent.com/Sawaiz/.dotfiles/master/.install.sh | sudo bash
 ```
 
 ## Setup
