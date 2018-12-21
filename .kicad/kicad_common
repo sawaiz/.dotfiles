@@ -1,0 +1,10 @@
+WorkingDir=C:\\Program Files\\KiCad
+ShowEnvVarWarningDialog=1
+UseIconsInMenus=1
+[EnvironmentVariables]
+KICAD_SYMBOL_DIR=C:\\Program Files\\KiCad\\share\\kicad\\library
+KICAD_TEMPLATE_DIR=C:\\Program Files\\KiCad\\share\\kicad\\template
+KICAD_USER_TEMPLATE_DIR=C:\\Users\\sawaiz\\kicad\\template
+KIGITHUB=https://github.com/KiCad
+KISYS3DMOD=C:\\Program Files\\KiCad\\share\\kicad\\modules\\packages3d\\
+KISYSMOD=C:\\Program Files\\KiCad\\share\\kicad\\modules
