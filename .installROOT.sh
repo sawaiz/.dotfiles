@@ -32,5 +32,5 @@ cd /usr/local/root
 ## Clone and build
 git clone http://root.cern.ch/git/root.git
 cmake ./root
-cmake --build . -- -j
+cmake --build . -- -j8
 
