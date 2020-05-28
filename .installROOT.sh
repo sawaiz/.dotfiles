@@ -2,7 +2,7 @@
 # CERN ROOT install script builds cmake and then ROOT
 
 #Check if running as root
-if [[ $(id -u) -ne 0]]; then
+if [[ $(id -u) -ne 0 ]]; then
   echo "Please run as root"
   exit
 fi
