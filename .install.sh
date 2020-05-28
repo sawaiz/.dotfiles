@@ -26,9 +26,9 @@ sudo -u $SUDO_USER chmod 600 $HOME/.ssh/*
 # Install tmux
 sudo apt-get install -y libevent-dev ncurses-dev autoconf
 cd /tmp
-wget https://github.com/tmux/tmux/releases/download/2.6/tmux-2.6.tar.gz
-tar -xf tmux-2.6.tar.gz
-cd tmux-2.6
+wget https://github.com/tmux/tmux/releases/download/2.9a/tmux-2.9a.tar.gz
+tar -xf tmux-2.9a.tar.gz
+cd tmux-2.9a
 ./configure
 make -j
 make install
