@@ -15,13 +15,12 @@ else
   esac
 fi
 
-
 # Set title as the location
 precmd () {print -Pn "\e]0;$(whoami)@$(hostname):${PWD/#${HOME}/~}\a"}
 
 
 # Start a tmux session if installed and not running and in local session
-if command -v tmux>/dev/null || [ -z $SESSION_SSH ]; then
+if command -v tmux>/dev/null && [ -z $SESSION_SSH ]; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 fi
 
