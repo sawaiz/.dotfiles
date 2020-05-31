@@ -2,18 +2,26 @@
 # Executes commands at the start of an interactive session.
 #
 
-# Set title as the location
-#case $TERM in
-#    xterm*)
-#        precmd () {print -Pn "\e]0;${PWD/#${HOME}/~}\a"}
-#        ;;
-#esac
 
 #Change Term
 export TERM=tmux-256color
 
-# Start a tmux session if installed and not running
-if command -v tmux>/dev/null; then
+# Figure out if the session is ssh or local
+if [ -n $SSH_CLIENT ] || [ -n $SSH_TTY ]; then
+  SESSION_SSH=TRUE
+else
+  case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) SESSION_SSH=TRUE;;
+  esac
+fi
+
+
+# Set title as the location
+precmd () {print -Pn "\e]0;$(whoami)@$(hostname):${PWD/#${HOME}/~}\a"}
+
+
+# Start a tmux session if installed and not running and in local session
+if command -v tmux>/dev/null || [ -z $SESSION_SSH ]; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 fi
 
@@ -28,8 +36,8 @@ HISTFILE=~/.zhistory
 # Set the dircolors
 eval `dircolors ~/.dircolors`
 
-# Setup ssh-agent, use existing one is it exists
-if [ -z $SSH_AUTH_SOCK ]; then
+# Setup ssh-agent, use existing one is it exists, only on local sessions
+if [ -z $SSH_AUTH_SOCK ] && [ -n $SESSION_SSH ]; then
     if [ -r ~/.ssh/env ]; then
             source ~/.ssh/env
             if [ `ps -p $SSH_AGENT_PID | wc -l` = 1 ]; then
@@ -39,7 +47,7 @@ if [ -z $SSH_AUTH_SOCK ]; then
     fi
 fi
 
-if [ -z $SSH_AUTH_SOCK ]; then
+if [ -z $SSH_AUTH_SOCK ] && [ -n $SESSION_SSH ]; then
     ssh-agent -s | sed 's/^echo/#echo/'> ~/.ssh/env
     chmod 600 ~/.ssh/env 1> /dev/null
     source ~/.ssh/env > /dev/null 2>&1
