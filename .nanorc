@@ -77,3 +77,15 @@ include "~/.nano/xresources.nanorc"
 include "~/.nano/yaml.nanorc"
 include "~/.nano/yum.nanorc"
 include "~/.nano/zsh.nanorc"
+
+bind ^c copytext main
+bind ^k cut main
+bind ^v uncut main
+bind ^z undo main
+bind ^y redo main
+bind ^f whereis main
+bind F3 findnext main
+bind ^h replace main
+bind ^s savefile main
+bind ^x exit main
+set nohelp
