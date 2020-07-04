@@ -7,7 +7,7 @@
 export TERM=tmux-256color
 
 # Figure out if the session is ssh or local
-if [ -n $SSH_CLIENT ] || [ -n $SSH_TTY ]; then
+if [[ -n $SSH_CLIENT ]] || [[ -n $SSH_TTY ]]; then
   SESSION_SSH=TRUE
 else
   case $(ps -o comm= -p $PPID) in
@@ -71,8 +71,8 @@ if [ -f /usr/local/geant4/bin ]; then
     cd ~
 fi
 
-# Connect to xMing
-export DISPLAY=:0
+# Connect to xWindows WSL2
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 
 # Alias: 'git' command for working with the dotifles bare repo
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

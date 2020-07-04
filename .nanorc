@@ -78,9 +78,9 @@ include "~/.nano/yaml.nanorc"
 include "~/.nano/yum.nanorc"
 include "~/.nano/zsh.nanorc"
 
-bind ^c copytext main
+bind ^c copy main
 bind ^k cut main
-bind ^v uncut main
+bind ^v paste main
 bind ^z undo main
 bind ^y redo main
 bind ^f whereis main
