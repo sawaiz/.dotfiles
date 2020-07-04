@@ -59,9 +59,13 @@ Change presmission on ssh folder... after adding your own `id_rsa` file.
 nano ~/.ssh/id_rsa
 chmod 600 ~/.ssh/*
 ```
-In the shortcuts, change the config directory command, to point to the correct config file `-c "%LOCALAPPDATA%\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\sawaiz\.minttyrc"` and change the default shell from `/bin/bash` to `/bin/zsh`.
+In the shortcuts, change the config directory command, to point to the correct config file `-c "\\wsl$\ubuntu-20.04\home\sawaiz\.minttyrc"` and change the default shell from `/bin/bash` to `/bin/zsh`.
 
-Install Xming as the X-Windows server and copy its shortcut to the `shell:startup` folder.
+```
+%localappdata%\wsltty\bin\mintty.exe -B frame -B void --WSL= --configdir="%appdata%\wsltty"  -c "\\wsl$\ubuntu-20.04\home\sawaiz\.minttyrc" /bin/zsh
+```
+
+Install VCXRV as the X-Windows server and copy its configured shortcut to the `shell:startup` folder. WSL2 requires `-ac` flags
 
 ## Applications
 Command for installing all the applicaitons below.
