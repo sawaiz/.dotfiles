@@ -18,20 +18,13 @@ sudo -u $SUDO_USER /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME che
 sudo -u $SUDO_USER /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME submodule update --init --recursive
 sudo -u $SUDO_USER /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME remote set-url origin git@github.com:Sawaiz/.dotfiles.git
 
+# Install tmux
+sudo apt-get install -y tmux
+
 # Request user to paste RSA Key
 sudo -u $SUDO_USER mkdir -p $HOME/.ssh
 sudo -u $SUDO_USER echo "Replace with id_rsa" > $HOME/.ssh/id_rsa
 sudo -u $SUDO_USER chmod 600 $HOME/.ssh/*
-
-# Install tmux
-sudo apt-get install -y libevent-dev ncurses-dev autoconf
-cd /tmp
-wget https://github.com/tmux/tmux/releases/download/2.9a/tmux-2.9a.tar.gz
-tar -xf tmux-2.9a.tar.gz
-cd tmux-2.9a
-./configure
-make -j
-make install
 
 # Finished and instrucitons
 echo "Installation finsihed, add your RSA key in ~/.ssh/id_rsa"
