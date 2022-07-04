@@ -62,7 +62,7 @@ chmod 600 ~/.ssh/*
 In the shortcuts, change the config directory command, to point to the correct config file `-c "\\wsl$\ubuntu-20.04\home\sawaiz\.minttyrc"` and change the default shell from `/bin/bash` to `/bin/zsh`.
 
 ```
-%localappdata%\wsltty\bin\mintty.exe -B frame -B void --WSL= --configdir="%appdata%\wsltty"  -c "\\wsl$\ubuntu-20.04\home\sawaiz\.minttyrc" /bin/zsh
+%localappdata%\wsltty\bin\mintty.exe -B frame -B void --WSL= --configdir="%appdata%\wsltty"  -c "\\wsl$\Ubuntu\home\sawaiz\.minttyrc" /bin/zsh
 ```
 
 Install VCXRV as the X-Windows server and copy its configured shortcut to the `shell:startup` folder. WSL2 requires `-ac` flags
