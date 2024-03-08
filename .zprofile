@@ -72,3 +72,11 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+# If running on macOS
+if [[ $(uname) == "Darwin" ]]; then
+    # Add brew to path
+    eval $(/opt/homebrew/bin/brew shellenv)
+    # Add gnu coreutils to path for dircolors
+    PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+fi
