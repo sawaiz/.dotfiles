@@ -80,3 +80,9 @@ if [[ $(uname) == "Darwin" ]]; then
     # Add gnu coreutils to path for dircolors
     PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 fi
+
+# source fpga tools
+export PATH="/opt/oss-cad-suite/bin:$PATH"
+
+
+export PATH="/Users/sawaiz/bin:$PATH"

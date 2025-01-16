@@ -85,3 +85,5 @@ ZSH_AUTOSUGGEST_USE_ASYNC=TRUE
 ZSH_AUTOSUGGEST_MANUAL_REBIND=TRUE
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 bindkey '^\n' autosuggest-execute
+
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
