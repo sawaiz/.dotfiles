@@ -125,3 +125,7 @@ git clone http://root.cern.ch/git/root.git
 cmake ./root
 cmake --build . -- -j8
 ```
+#### macOS Changes
+Install brew
+`brew install wget`
+`brew install coreutils`
