@@ -1,131 +1,45 @@
-# Dotfiles
-Dotfiles are files, houesed in the users home directory, that are used by programsto configure themselves.
+# macOS Dotfiles
+
+This repository houses dotfiles specifically tailored and optimized for an Apple Silicon (M3) macOS environment. It uses a bare git repository approach to manage configuration files without the need for symlinks.
+
+## Quick Installation
+
+To bootstrap a new macOS environment, run the following command in your terminal. This command downloads and executes the installation script, which will install Homebrew, configure prerequisites, and clone the dotfiles.
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/Sawaiz/.dotfiles/master/.install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/Sawaiz/.dotfiles/master/.install.sh | bash
 ```
 
-## Setup
-This uses a bare git repository. This allows no symlinks and easier configuration and updates. But it comes at a cost, therefore special precaustions must be taken to initailise and 
-manage it.
+**Note:** The script will halt if you do not have Apple Command Line Tools installed. Follow the GUI prompt to install them, then re-run the script.
 
-Temporarily assign the dotfiles alias
-```bash
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-```
-Clone the bare repository
-```bash
-git clone --bare <git-repo-url> $HOME/.dotfiles
-```
-And then checkout the files, any errors might be duplicates of files in therepo, they will need to be removed, and then rerun.
-```bash
-dotfiles checkout
-```
-And pull any submouldes you have
-```bash
-dotfiles submodule update --init --recursive
-```
+## Core Features
 
-### Cygwin Tips
-Changing the home directory to the windows profile directory
-```bash
-mkpasswd -l -d -p "$(cygpath -H)" > /etc/passwd
-mkgroup -l -d > /etc/group
-```
-Change shell (chsh) command doesnt exist, bit this sed script will work to change your defulat shell to zsh
-```bash
-sed -i "s/$USER\:\/bin\/bash/$USER\:\/bin\/zsh/g" /etc/passwd
-```
-### Windows Subsystem for Linux (WSL)
-If you are running in a windows enviroment, WSL is an option for your linux shell.
+*   **Zsh & Zimfw:** Fast and modular Zsh framework.
+*   **Tmux:** Configured with modern keybindings (Alt+Arrows for pane switching) and native macOS clipboard integration.
+*   **Nano:** Enhanced syntax highlighting for editing files.
+*   **Homebrew Integration:** Automatically sets up the brew environment and integrates GNU coreutils (for vibrant `dircolors`).
 
-#### Installation
-Install windows subsytem for linux (WSL). and [wsltty](https://github.com/mintty/wsltty). Then in a bash session, run
-```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install -y build-essential checkinstall git zsh
-```
-Now we have the prerequsites, begin importing this as a bare repository
-```bash
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-git clone --bare https://github.com/Sawaiz/.dotfiles.git $HOME/.dotfiles
-dotfiles checkout
-dotfiles submodule update --init --recursive
-dotfiles remote set-url origin git@github.com:Sawaiz/.dotfiles.git
-```
-Change presmission on ssh folder... after adding your own `id_rsa` file.
+## Manual Setup Steps (Post-Install)
+
+After the automated script finishes, there is one manual step required:
+
+### SSH Keys
+You must manually add your private SSH key to securely authenticate with GitHub and other services.
+
 ```bash
 nano ~/.ssh/id_rsa
-chmod 600 ~/.ssh/*
-```
-In the shortcuts, change the config directory command, to point to the correct config file `-c "\\wsl$\ubuntu-20.04\home\sawaiz\.minttyrc"` and change the default shell from `/bin/bash` to `/bin/zsh`.
-
-```
-%localappdata%\wsltty\bin\mintty.exe -B frame -B void --WSL= --configdir="%appdata%\wsltty"  -c "\\wsl$\Ubuntu\home\sawaiz\.minttyrc" /bin/zsh
+# Paste your private key here, save and exit
+chmod 600 ~/.ssh/id_rsa
 ```
 
-Install VCXRV as the X-Windows server and copy its configured shortcut to the `shell:startup` folder. WSL2 requires `-ac` flags
+## Bare Git Workflow
 
-## Applications
-Command for installing all the applicaitons below.
-`sudo apt-get install -y git zsh nano tmux`
+Since this is a bare repository, we use a special Git alias to interact with it safely without affecting other git repositories in your home directory. The alias is already configured in your `.zshrc`.
 
-### Source Control
-I dont think this requres an explation, seeing as we this is.
-
-### Text Editor
-Nano, nice, quick, and simple. This has a submodule with pretty good syntax highlighting, and a lot of languages.
-
-### Shell
-ZSH, 
-
-### tmux
-Terminal multiplexer, I use chrome shortcuts as well as alt arrowkeys, those are included in the .tmux.config file. It requires a version 2.1+, here are instruction for compiling 2.5 form source.
 ```bash
-sudo apt-get install -y libevent-dev ncurses-dev autoconf
-wget https://github.com/tmux/tmux/releases/download/2.5/tmux-2.5.tar.gz
-tar -xf tmux-2.5.tar.gz
-cd tmux-2.5
-./configure
-make -j8
-make install
+# The alias acts exactly like the standard 'git' command
+dotfiles status
+dotfiles add .zshrc
+dotfiles commit -m "Update zsh config"
+dotfiles push
 ```
-
-### Cern ROOT
-Software for nuclear physics data processing. Its built to work with large data sets, and to be fast. Installation is somewhat complex due to some dependencies and no actual instalation, just havinga compiled toolset.
-#### Perp work
-```bash
-sudo apt-get update
-sudo apt-get -y upgrade
-sudo apt-get install -y build-essential checkinstall
-sudo apt-get install -y dpkg-dev g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev
-sudo apt-get install -y xorg
-sudo apt-get install -y git
-```
-#### Install CMAKE
-```bash
-wget http://www.cmake.org/files/v3.9/cmake-3.9.0.tar.gz
-tar xf cmake-3.9.0.tar.gz
-cd cmake-3.9.0
-./configure
-make -j8
-make install
-cd ..
-rm -r cmake-3.9.0.tar.gz cmake-3.9.0
-```
-#### Create install location
-```bash
-mkdir /usr/local/root
-cd /usr/local/root
-```
-#### Clone source
-```bash
-git clone http://root.cern.ch/git/root.git
-cmake ./root
-cmake --build . -- -j8
-```
-#### macOS Changes
-Install brew
-`brew install wget`
-`brew install coreutils`

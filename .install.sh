@@ -1,31 +1,61 @@
 #!/bin/bash
-# Single Install script, built for WSL.
+# macOS M3 Air Dotfiles Bootstrap Script
 
-#Check if running as root
-if [[ $(id -u) -ne 0 ]]; then
-  echo "Please run as root"
-  exit
+echo "Starting macOS Dotfiles Installation..."
+
+# 1. Install Apple Command Line Tools (required for git and homebrew)
+if ! xcode-select -p &>/dev/null; then
+    echo "Installing macOS Command Line Tools..."
+    xcode-select --install
+    echo "Please complete the Command Line Tools installation dialog, then re-run this script."
+    exit 1
 fi
 
-#Update/upgrade
-apt-get update && apt-get -y upgrade
+# 2. Install Homebrew
+if ! command -v brew &>/dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    # Temporarily add brew to path for this script so subsequent commands work
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
-# Install packages
-sudo apt-get install -y build-essential checkinstall git zsh tmux
+# 3. Install required packages
+echo "Installing brew packages..."
+brew install git tmux nano coreutils
 
-# Run commands as user
-sudo -u "$SUDO_USER" -i /bin/bash - <<-'EOF'
-  # Pull configuration from git
-  git clone --bare https://github.com/Sawaiz/.dotfiles.git $HOME/.dotfiles
-  cd $HOME
-  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
-  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME submodule update --init --recursive
-  /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME remote set-url origin git@github.com:Sawaiz/.dotfiles.git
-  # Request user to paste RSA Key
-  mkdir -p $HOME/.ssh
-  echo "Replace with id_rsa" > $HOME/.ssh/id_rsa
-  chmod 600 $HOME/.ssh/*
-EOF
+# 4. Initialize Bare Git Repository
+echo "Setting up bare git repository..."
 
-# Finished and instrucitons
-echo "Installation finsihed, add your RSA key in ~/.ssh/id_rsa"
+DOTFILES_DIR="$HOME/.dotfiles"
+GIT_ALIAS="/usr/bin/git --git-dir=$DOTFILES_DIR/ --work-tree=$HOME"
+
+if [ ! -d "$DOTFILES_DIR" ]; then
+    git clone --bare https://github.com/Sawaiz/.dotfiles.git "$DOTFILES_DIR"
+fi
+
+echo "Checking out files..."
+# Backup existing files if checkout fails
+if ! $GIT_ALIAS checkout 2>/dev/null; then
+    echo "Backing up pre-existing dotfiles..."
+    mkdir -p "$HOME/.dotfiles-backup"
+    $GIT_ALIAS checkout 2>&1 | egrep "^\s+" | awk {'print $1'} | xargs -I{} mv "$HOME/{}" "$HOME/.dotfiles-backup/{}"
+    $GIT_ALIAS checkout
+fi
+
+echo "Checking out submodules..."
+$GIT_ALIAS submodule update --init --recursive
+$GIT_ALIAS config --local status.showUntrackedFiles no
+$GIT_ALIAS remote set-url origin git@github.com:Sawaiz/.dotfiles.git
+
+# 5. SSH Key reminder
+if [ ! -f "$HOME/.ssh/id_rsa" ]; then
+    echo ""
+    echo "========================================================"
+    echo "Installation finished!"
+    echo "ACTION REQUIRED: Please copy your private SSH key to ~/.ssh/id_rsa"
+    echo "Then run: chmod 600 ~/.ssh/id_rsa"
+    echo "========================================================"
+else
+    echo "Installation finished!"
+fi
