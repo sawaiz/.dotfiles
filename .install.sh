@@ -121,5 +121,14 @@ else
     success "SSH Key found."
 fi
 
+# --- 8. Apply Terminal Theme ---
+info "Applying Solarized Dark Terminal Theme..."
+if [ -f "$HOME/.solarizedDark.terminal" ]; then
+    open "$HOME/.solarizedDark.terminal"
+    success "Terminal theme applied! You may need to set it as default in Preferences."
+else
+    warn "Solarized Dark terminal theme file not found."
+fi
+
 success "Installation finished! Restart your terminal to see the changes."
 echo "========================================================"

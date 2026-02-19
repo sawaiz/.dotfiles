@@ -26,9 +26,6 @@ HISTFILE=~/.zhistory
 # Set the dircolors
 eval `dircolors ~/.dircolors`
 
-# Set the dircolors
-eval `dircolors ~/.dircolors`
-
 # Set the prompts
 # %B%(?..[%?] )%b - Bold error return value
 # %D{%H:%M}       - Time, 24h with leading zeros
@@ -45,7 +42,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=10
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=TRUE
 ZSH_AUTOSUGGEST_MANUAL_REBIND=TRUE
-ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 bindkey '^\n' autosuggest-execute
 
 # Atuin Shell History (Cross-mac sync and sqlight database)
