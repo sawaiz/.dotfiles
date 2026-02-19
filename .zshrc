@@ -48,3 +48,6 @@ ZSH_AUTOSUGGEST_MANUAL_REBIND=TRUE
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 bindkey '^\n' autosuggest-execute
 
+# Atuin Shell History (Cross-mac sync and sqlight database)
+eval "$(atuin init zsh)"
+

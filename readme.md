@@ -16,6 +16,7 @@ curl -fsSL https://raw.githubusercontent.com/Sawaiz/.dotfiles/master/.install.sh
 
 *   **Ultra Robust Setup:** The installation script contains strict error-checking, verifies dependencies before installing them (like `brew`), and implements a safe conflict resolution system natively. If you have existing dotfiles (e.g., an old `.zshrc`), the script will automatically move them into a timestamped backup directory (e.g., `~/.dotfiles-backup-20231025_143000`) before deploying.
 *   **Zsh & Zimfw:** Fast and modular Zsh framework.
+*   **Atuin:** Syncs, encrypts, and backs up your shell history securely using a local SQLite database. Access the powerful interactive search via `Ctrl+R`.
 *   **Tmux:** Configured with modern keybindings (Alt+Arrows for pane switching) and native macOS clipboard integration.
 *   **Nano:** Enhanced syntax highlighting for editing files.
 *   **Homebrew Integration:** Automatically sets up the brew environment and integrates GNU coreutils (for vibrant `dircolors`).

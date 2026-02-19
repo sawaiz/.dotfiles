@@ -49,7 +49,7 @@ brew update || warn "Brew update failed, continuing anyway..."
 
 # --- 3. Packages ---
 info "Verifying required Homebrew packages..."
-for pkg in git tmux nano coreutils; do
+for pkg in git tmux nano coreutils atuin; do
     if brew list -1 | grep -q "^${pkg}\$"; then
         success "$pkg is already installed."
     else
