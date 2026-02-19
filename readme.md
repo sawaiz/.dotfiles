@@ -15,7 +15,6 @@ curl -fsSL https://raw.githubusercontent.com/Sawaiz/.dotfiles/master/.install.sh
 ## Core Features
 
 *   **Ultra Robust Setup:** The installation script contains strict error-checking, verifies dependencies before installing them (like `brew`), and implements a safe conflict resolution system natively. If you have existing dotfiles (e.g., an old `.zshrc`), the script will automatically move them into a timestamped backup directory (e.g., `~/.dotfiles-backup-20231025_143000`) before deploying.
-*   **Solarized Dark:** The installation script natively launches and applies the patched Solarized Dark `.terminal` profile to your macOS Terminal.app.
 *   **Zsh & Zimfw:** Fast and modular Zsh framework, optimized for typing speed.
 *   **Atuin:** Syncs, encrypts, and backs up your shell history securely using a local SQLite database. Access the powerful interactive search via `Ctrl+R`.
 *   **Tmux:** Configured with modern keybindings (Alt+Arrows for pane switching) and native macOS clipboard integration.
